@@ -1,0 +1,5 @@
+clang::Preprocessor::Preprocessor(clang::Diagnostic&, clang::LangOptions&, clang::TargetInfo&, 
+                                    clang::SourceManager&, clang::HeaderSearch&, clang::IdentifierTable&, bool)」 
+clang::Preprocessor::Preprocessor(clang::Diagnostic&, const clang::LangOptions&, const clang::TargetInfo&, 
+                                    clang::SourceManager&, clang::HeaderSearch&, clang::IdentifierInfoLookup*, bool)
+
