@@ -1,4 +1,4 @@
-NUM = 4
+NUM = 1
 
 CPP = g++
 LLVMHOME = /home/modcarl/llvm-124522
@@ -10,8 +10,8 @@ LDFLAGS= `$(LLVMCONFIG) --ldflags`
 LIBS=  -lclangDriver -lclangFrontend -lclangIndex -lclangParse \
 	   -lclangSema -lclangAnalysis -lclangAST -lclangLex -lclangBasic 
 
-all:tut2
-tut2:
+all:test
+test:
 	$(CPP) tut$(NUM).cpp $(CXXFLAGS) \
 	-o tut1 $(LIBS) `$(LLVMCONFIG) --ldflags --libs all`
 1:

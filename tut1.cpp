@@ -20,21 +20,23 @@ using namespace std;
 
 int main()
 {
-    string str;
-    raw_string_ostream ost(str);
     const DiagnosticOptions diagOptions;
-    TextDiagnosticPrinter tdp(ost, diagOptions, true);
-	LangOptions lang;
+    TextDiagnosticPrinter *tdp = 
+        new TextDiagnosticPrinter(outs(), diagOptions, true);
+	const LangOptions lang;
 
-    const llvm::IntrusiveRefCntPtr<DiagnosticIDs> Diags;
-	Diagnostic diag(Diags);
+    DiagnosticIDs *diagID;
+    const llvm::IntrusiveRefCntPtr< DiagnosticIDs > Diags;
+	Diagnostic diag(Diags, tdp, false);
     FileSystemOptions fsOptions;
 	FileManager fm(fsOptions);
 	SourceManager sm(diag, fm);
-	HeaderSearch headers(fm);
+
     TargetOptions tarOptions;
     tarOptions.Triple = LLVM_HOSTTRIPLE;
-	TargetInfo *ti = TargetInfo::CreateTargetInfo(diag, tarOptions);
+	const TargetInfo *ti = TargetInfo::CreateTargetInfo(diag, tarOptions);
+
+	HeaderSearch headers(fm);
 	Preprocessor pp(diag, lang, *ti, sm, headers);
 	return 0;
 }
